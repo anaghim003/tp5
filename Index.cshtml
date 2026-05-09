@@ -1,0 +1,50 @@
+@model IEnumerable<RestoManager.Models.RestosModel.Restaurant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="AvisParRestaurant" class="btn btn-sm btn-outline-secondary ms-2">Avis par restaurant</a>
+    <a asp-action="RestaurantsMoyenne" class="btn btn-sm btn-outline-secondary ms-2">Restaurants (moyenne >= 3.5)</a>
+    <a asp-action="VoirProprietaires" class="btn btn-sm btn-outline-secondary ms-2">Voir les propriétaires</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>NomResto</th>
+            <th>Specialite</th>
+            <th>Ville</th>
+            <th>Tel</th>
+            <th>Propriétaire</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomResto</td>
+                <td>@item.Specialite</td>
+                <td>@item.Ville</td>
+                <td>@item.Tel</td>
+                <td>
+                    @if (item.LeProprio != null)
+                    {
+                        <span>@item.LeProprio.Nom</span><br />
+                        <small>@item.LeProprio.Email</small>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodeResto">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CodeResto">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodeResto">Delete</a> |
+                    <a asp-action="AvisParRestaurant" asp-route-id="@item.CodeResto">Voir avis</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

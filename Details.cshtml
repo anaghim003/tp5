@@ -1,0 +1,28 @@
+@model RestoManager.Models.RestosModel.Restaurant
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Restaurant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">NomResto</dt>
+        <dd class="col-sm-10">@Model.NomResto</dd>
+        <dt class="col-sm-2">Specialite</dt>
+        <dd class="col-sm-10">@Model.Specialite</dd>
+        <dt class="col-sm-2">Ville</dt>
+        <dd class="col-sm-10">@Model.Ville</dd>
+        <dt class="col-sm-2">Tel</dt>
+        <dd class="col-sm-10">@Model.Tel</dd>
+        <dt class="col-sm-2">Propriétaire</dt>
+        <dd class="col-sm-10">@Model.LeProprio?.Nom</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CodeResto">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

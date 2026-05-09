@@ -1,0 +1,29 @@
+@model IEnumerable<RestoManager.Models.RestosModel.Proprietaire>
+
+@{
+    ViewData["Title"] = "Voir les propriétaires";
+}
+
+<h1>Propriétaires et leurs restaurants</h1>
+
+<a asp-action="Index" class="btn btn-secondary mb-3">Retour</a>
+
+@foreach (var p in Model)
+{
+    <div class="card mb-3 p-3">
+        <h5>@p.Nom — @p.Email</h5>
+        @if (p.LesRestos != null && p.LesRestos.Any())
+        {
+            <ul>
+                @foreach (var r in p.LesRestos)
+                {
+                    <li>@r.NomResto (@r.Ville)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">Aucun restaurant.</p>
+        }
+    </div>
+}

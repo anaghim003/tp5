@@ -1,0 +1,31 @@
+@model IEnumerable<RestoManager.Models.RestosModel.Restaurant>
+
+@{
+    ViewData["Title"] = "Restaurants (moyenne >= 3.5)";
+}
+
+<h1>Restaurants avec note moyenne &gt;= 3.5</h1>
+
+<a asp-action="Index" class="btn btn-secondary mb-3">Retour</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>NomResto</th>
+            <th>Ville</th>
+            <th>Propriétaire</th>
+            <th>Moyenne des notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.NomResto</td>
+                <td>@r.Ville</td>
+                <td>@r.LeProprio?.Nom</td>
+                <td>@r.LesAvis.Average(a => a.Note).ToString("F1")</td>
+            </tr>
+        }
+    </tbody>
+</table>

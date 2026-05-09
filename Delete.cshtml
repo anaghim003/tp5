@@ -1,0 +1,31 @@
+@model RestoManager.Models.RestosModel.Restaurant
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Restaurant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">NomResto</dt>
+        <dd class="col-sm-10">@Model.NomResto</dd>
+        <dt class="col-sm-2">Specialite</dt>
+        <dd class="col-sm-10">@Model.Specialite</dd>
+        <dt class="col-sm-2">Ville</dt>
+        <dd class="col-sm-10">@Model.Ville</dd>
+        <dt class="col-sm-2">Tel</dt>
+        <dd class="col-sm-10">@Model.Tel</dd>
+        <dt class="col-sm-2">Propriétaire</dt>
+        <dd class="col-sm-10">@Model.LeProprio?.Nom</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CodeResto" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,34 @@
+@model RestoManager.Models.RestosModel.Restaurant
+
+@{
+    ViewData["Title"] = "Avis par restaurant";
+}
+
+<h1>Avis par restaurant</h1>
+
+<a asp-action="Index" class="btn btn-secondary mb-3">Retour à la liste des restaurants</a>
+
+<div class="card p-3">
+    <h4>@Model.NomResto (@Model.Ville)</h4>
+    <p class="text-muted">
+        Propriétaire : @Model.LeProprio?.Nom ?? "—"
+    </p>
+
+    <h5>Avis (@Model.LesAvis.Count)</h5>
+    @if (!Model.LesAvis.Any())
+    {
+        <p>Aucun avis pour ce restaurant.</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var avis in Model.LesAvis)
+            {
+                <li>
+                    <strong>@avis.NomPersonne</strong> — note : @avis.Note<br />
+                    @avis.Commentaire
+                </li>
+            }
+        </ul>
+    }
+</div>
